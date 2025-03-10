@@ -19,3 +19,8 @@ variable "blob_size_mb" {
   type    = number
   default = 4096
 }
+
+variable "blob_name" {
+  type = string
+  default = "terraform_blob.vhd"
+}
