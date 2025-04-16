@@ -1,5 +1,5 @@
 module "blob_storage" {
-  source = "../../modules/blob_storage"
+  source = "../modules/blob_storage"
 
   resource_group_name     = "rg-iac-dev"
   location                = "eastus"

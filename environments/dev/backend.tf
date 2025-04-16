@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    organization = "your-terraform-cloud-org"
+    organization = "dev_1etss"
 
     workspaces {
-      name = "dev-iac"
+      name = "iac"
     }
   }
 }
