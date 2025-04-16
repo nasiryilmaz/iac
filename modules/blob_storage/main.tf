@@ -9,11 +9,10 @@ resource "azurerm_storage_account" "storage_account" {
   location                 = azurerm_resource_group.storage_rg.location
   account_tier             = var.account_tier
   account_replication_type = var.replication_type
-  allow_blob_public_access = false
 }
 
 resource "azurerm_storage_container" "storage_container" {
   name                  = var.container_name
-  storage_account_name  = azurerm_storage_account.storage_account.name
+  storage_account_id    = azurerm_storage_account.storage_account.id
   container_access_type = var.container_access_type
 }
