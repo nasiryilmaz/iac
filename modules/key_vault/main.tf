@@ -1,23 +1,10 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_resource_group" "storage_rg" {
-  name     = "tf-blob-rg"
-  location = "East US"
+  name     = var.resource_group_name
+  location = var.location
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "tfblobstorage$(random_id.storageid.hex)"
+  name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.storage_rg.name
   location                 = azurerm_resource_group.storage_rg.location
   account_tier             = "Standard"
@@ -25,15 +12,15 @@ resource "azurerm_storage_account" "storage_account" {
 }
 
 resource "azurerm_storage_container" "storage_container" {
-  name                  = "tf-container"
-  storage_account_name  = azurerm_resource_group.storage_rg.name
+  name                  = var.container_name
+  storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
 }
 
-resource "azurerm_storage_blob" "blob_file" {
-  name                   = "4gbfile.vhd"
+resource "azurerm_storage_blob" "blob" {
+  name                   = var.blob_name
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.storage_container.name
   type                   = "Page"
-  size                   = 4096 # Size in MB (4GB)
+  size                   = var.blob_size_mb
 }
