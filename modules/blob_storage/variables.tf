@@ -1,37 +1,48 @@
 variable "resource_group_name" {
-  description = "Name of the resource group"
+  description = "The name of the resource group"
   type        = string
 }
 
 variable "location" {
-  description = "Azure region to deploy resources in"
+  description = "The Azure region to deploy resources"
   type        = string
 }
 
 variable "storage_account_name" {
-  description = "Globally unique name for the Azure storage account"
+  description = "The name of the storage account"
   type        = string
 }
 
 variable "account_tier" {
-  description = "Storage account performance tier (Standard or Premium)"
+  description = "The performance tier of the storage account"
   type        = string
   default     = "Standard"
 }
 
 variable "replication_type" {
-  description = "Storage replication type (e.g., LRS, GRS, ZRS)"
+  description = "The replication type for the storage account"
   type        = string
   default     = "LRS"
 }
 
 variable "container_name" {
-  description = "Name of the storage blob container"
+  description = "The name of the blob container"
   type        = string
 }
 
 variable "container_access_type" {
-  description = "Access level for the blob container (private, blob, container)"
+  description = "Access level for the blob container"
   type        = string
   default     = "private"
+}
+
+variable "blob_name" {
+  description = "The name of the blob to create"
+  type        = string
+}
+
+variable "blob_size_mb" {
+  description = "The size of the page blob in megabytes"
+  type        = number
+  default     = 512
 }
