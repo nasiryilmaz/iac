@@ -1,26 +1,25 @@
-resource "azurerm_resource_group" "storage_rg" {
-  name     = var.resource_group_name
-  location = var.location
+module "blob_storage_data01" {
+  source                 = "../../modules/blob_storage"
+  resource_group_name    = "rg-iac-dev-east"
+  location               = "East US"
+  storage_account_name   = "iacdatastorage01"
+  account_tier           = "Standard"
+  replication_type       = "LRS"
+  container_name         = "data01-new"
+  container_access_type  = "private"
+  blob_name              = "data01.vhd"         # ✅ REQUIRED
+  blob_size_mb           = 512
 }
 
-resource "azurerm_storage_account" "storage_account" {
-  name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.storage_rg.name
-  location                 = azurerm_resource_group.storage_rg.location
-  account_tier             = var.account_tier
-  account_replication_type = var.replication_type
-}
-
-resource "azurerm_storage_container" "storage_container" {
-  name                  = var.container_name
-  storage_account_id    = azurerm_storage_account.storage_account.id
-  container_access_type = var.container_access_type
-}
-
-resource "azurerm_storage_blob" "blob" {
-  name                   = var.blob_name
-  storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.storage_container.name
-  type                   = "Page"
-  size                   = var.blob_size_mb
+module "data02" {
+  source                 = "../../modules/blob_storage"
+  resource_group_name    = "rg-iac-dev-east"
+  location               = "East US"
+  storage_account_name   = "iacdevstorage01"
+  account_tier           = "Standard"
+  replication_type       = "LRS"
+  container_name         = "data02-new"
+  container_access_type  = "private"
+  blob_name              = "data02.vhd"         # ✅ REQUIRED
+  blob_size_mb           = 512
 }
