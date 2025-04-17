@@ -5,7 +5,7 @@ module "blob_storage_data01" {
   storage_account_name   = "iacdatastorage01"
   account_tier           = "Standard"
   replication_type       = "LRS"
-  container_name         = "data01-container"
+  container_name         = "data01-new"
   container_access_type  = "private"
 }
 
@@ -16,6 +16,6 @@ module "data02" {
   storage_account_name   = "iacdevstorage01"
   account_tier           = "Standard"
   replication_type       = "LRS"
-  container_name         = "iac-container"
+  container_name         = "data02-new"
   container_access_type  = "private"
 }
