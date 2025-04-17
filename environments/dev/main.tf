@@ -7,6 +7,8 @@ module "blob_storage_data01" {
   replication_type       = "LRS"
   container_name         = "data01-new"
   container_access_type  = "private"
+  blob_name              = "data01.vhd"
+  blob_size_mb           = 512
 }
 
 module "data02" {
@@ -18,4 +20,6 @@ module "data02" {
   replication_type       = "LRS"
   container_name         = "data02-new"
   container_access_type  = "private"
+  blob_name              = "data02.vhd"
+  blob_size_mb           = 512
 }
